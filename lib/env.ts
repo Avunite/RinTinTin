@@ -36,7 +36,8 @@ const resendOrNoResendSchema = resendEmailSchema.or(resendAudienceSchema).or(res
 
 const envSchema = z
   .object({
-    OPENAI_API_KEY: z.string(),
+    OPENAI_API_KEY: z.string().optional(),
+    OPENROUTER_API_KEY: z.string().optional(),
     FIELD_ENCRYPTION_KEY: z.string(),
     SECRET_KEY: z.string(),
     CLERK_SECRET_KEY: z.string(),
@@ -62,6 +63,13 @@ const envSchema = z
       .optional()
       .default("false"),
   })
-  .and(resendOrNoResendSchema);
+  .and(resendOrNoResendSchema)
+  .refine(
+    (data) => data.OPENAI_API_KEY || data.OPENROUTER_API_KEY,
+    {
+      message: "Either OPENAI_API_KEY or OPENROUTER_API_KEY must be provided",
+      path: ["OPENAI_API_KEY", "OPENROUTER_API_KEY"],
+    }
+  );
 
 export const env = Object.freeze(envSchema.parse(process.env));

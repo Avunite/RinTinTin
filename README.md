@@ -69,11 +69,21 @@ openssl rand -base64 32
 </details>
 
 <details>
-<summary>OpenAI</summary>
+<summary>AI Provider (OpenAI or OpenRouter)</summary>
 
+You need to configure at least one AI provider for content moderation. You can use either OpenAI or OpenRouter.
+
+#### Option 1: OpenAI
 1. Create an account at [openai.com](https://openai.com).
 1. Create a new API key at [platform.openai.com/api-keys](https://platform.openai.com/api-keys).
 1. Add the API key to your `.env.local` file as `OPENAI_API_KEY`.
+
+#### Option 2: OpenRouter (Recommended for cost-effectiveness)
+1. Create an account at [openrouter.ai](https://openrouter.ai).
+1. Create a new API key in your [OpenRouter dashboard](https://openrouter.ai/keys).
+1. Add the API key to your `.env.local` file as `OPENROUTER_API_KEY`.
+
+**Note:** If both API keys are provided, the system will prioritize OpenRouter. OpenRouter typically offers more cost-effective access to various LLMs including free models like Llama 3.1 8B.
 
 </details>
 

@@ -1,4 +1,3 @@
-import { openai } from "@ai-sdk/openai";
 import merge from "lodash/merge";
 import { Model, ProviderRegistryConfig } from "./ai";
 
@@ -30,13 +29,11 @@ export type ResolvedConfig = {
 };
 
 const defaultConfig: ResolvedConfig = {
-  registry: {
-    openai,
-  },
+  registry: {},
   strategies: {
     prompt: {
-      defaultModel: "openai:gpt-5-mini",
-      judgeModel: "openai:gpt-5-mini",
+      defaultModel: "openai:gpt-4o-mini",
+      judgeModel: "openai:gpt-4o-mini",
     },
     blocklist: {},
     classifier: {},
